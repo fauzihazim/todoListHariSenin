@@ -39,6 +39,12 @@
         <div>
             <input type="text" name="Input To Do List" id="inputToDo" placeholder="Input Todo List">
             <input type="date" name="Input Deadline" id="inputDeadline">
+            <select id="prioritySelect" name="prioritySelect">
+                <option  disabled selected>Priority :</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
             <button type="button" onclick="addTableToDo()">+Add</button>
         </div>
         <!-- <div id="addToDo" class="addToDo">
@@ -51,12 +57,18 @@
                 <th>Action</th>
                 <th>To-do</th>
                 <th>Due to</th>
+                <th>Priority</th>
                 <th>Action</th>
             </tr>
-            <tr class="toDoList finished late">
-                <td><input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input"></td>
+            <tr class="toDoList late">
+                <!-- <td><input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input"></td> -->
+                <td><button class="btn btn-primary btn-sm buttonFinished"><span class="material-symbols-outlined" style="padding-top: 5px;">
+                    check_small
+                    </span>
+                  </button></td>
                 <td>Emil</td>
                 <td>Tobias</td>
+                <td>High</td>
                 <td>
                     <button class="buttonDelete" style="border: none; background-color: transparent;">
                         <span class="material-symbols-outlined" style="color: #E4A11B;">
@@ -66,10 +78,23 @@
                 </td>
             </tr>
             <tr class="toDoList">
-                <td><input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input"></td>
+                <!-- <td><input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input"></td> -->
+                <td>
+                    <button class="btn btn-primary btn-sm buttonFinished"><span class="material-symbols-outlined" style="padding-top: 5px;">
+                        check_small
+                        </span>
+                    </button>
+                </td>
                 <td>16</td>
                 <td>14</td>
-                <td>10</td>
+                <td>Low</td>
+                <td>
+                    <button class="buttonDelete" style="border: none; background-color: transparent;">
+                        <span class="material-symbols-outlined" style="color: #E4A11B;">
+                            delete
+                        </span>
+                    </button>
+                </td>
             </tr>
         </table>
     </main>
