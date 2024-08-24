@@ -18,10 +18,7 @@ function addTableToDo() {
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     // cell1.innerHTML = `<input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">`;
-    cell1.innerHTML = `<button class="btn btn-primary btn-sm buttonFinished"><span class="material-symbols-outlined" style="padding-top: 5px;">
-                          check_small
-                        </span>
-                      </button>`
+    cell1.innerHTML = `<td><input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input"></td>`
     cell2.innerHTML = inputToDo;
     cell3.innerHTML = inputDeadline;
     cell4.innerHTML = `<button class="buttonDelete" style="border: none; background-color: transparent;">
