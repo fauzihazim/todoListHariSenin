@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html> 
+  
+<head> 
+    <title>Strike through Text</title> 
+    <style> 
+        #checkbox:checked, 
+        p#textToStrike { 
+            text-decoration: line-through; 
+        } 
+  
+        body { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            flex-direction: column; 
+        } 
+  
+        #heading { 
+            color: green; 
+        } 
+  
+        .main { 
+            border: 2px solid green; 
+            padding: 40px; 
+            box-shadow: 0px 4.5px 5.5px rgba(0, 0, 0, 0.15); 
+            border-radius: 15px; 
+            text-align: center; 
+        } 
+    </style> 
+</head> 
+  
+<body> 
+    <h2 id=heading> 
+        GeeksforGeeks 
+    </h2> 
+    <div class="main"> 
+        <label for="checkbox"> 
+            <input type="checkbox"
+                   id="checkbox"> 
+            Scratch Text 
+        </label> 
+        <p id="TextToStrike"> 
+            Let's strike this text for fun. 
+        </p> 
+    </div> 
+    <script> 
+        const checkbox = 
+            document.getElementById("checkbox"); 
+        const textToCross = 
+            document.getElementById("TextToStrike"); 
+            checkbox.addEventListener("change", 
+            function () { 
+  
+                // If checked, strike through  
+                // the paragraph text 
+                if (this.checked) { 
+                    textToCross.style.textDecoration = 
+                        "line-through"; 
+                } 
+  
+                // If unchecked, remove the strikethrough 
+                else { 
+                    textToCross.style.textDecoration = "none"; 
+                } 
+            }); 
+    </script> 
+</body> 
+  
+</html>

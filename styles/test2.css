@@ -1,0 +1,20 @@
+label {
+    cursor: pointer;
+  }
+  /* Change cursor when the label is hovered */
+  
+  input[type=checkbox] {
+    display: none;
+  }
+  /* Hide the ugly default radio styling */
+  
+  label > span {
+    opacity: 0.2;
+  }
+  /* Hide the checkmark by default */
+  
+  input[type=checkbox]:checked + span {
+    opacity: 1;
+    color: green;
+  }
+  /* Show the checkmark when the radio is checked */
