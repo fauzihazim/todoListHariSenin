@@ -24,7 +24,7 @@ function addTableToDo() {
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     // cell1.innerHTML = `<input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">`;
-    cell1.innerHTML = `<td><input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input"></td>`
+    cell1.innerHTML = `<td><input type="checkbox" name="finishCheckbox" onchange="showHidePan(this)"></td>`
     cell2.innerHTML = inputToDo;
     cell3.innerHTML = inputDeadline;
     cell4.innerHTML = priority;
@@ -41,20 +41,27 @@ $(document).on('click','.buttonDelete',function() {
 });
 
 // Finished
-$(document).on('click','.buttonFinished',function() {
-  var element = this;
-  element.classList.remove("btn-primary");
-  element.classList.add("btn-success");
-  element = element.parentElement.parentElement;
-  element.classList.add("finished");
-});
+// $(document).on('click','.buttonFinished',function() {
+//   var element = this;
+//   element.classList.remove("btn-primary");
+//   element.classList.add("btn-success");
+//   element = element.parentElement.parentElement;
+//   element.classList.add("finished");
+// });
+
+// Finish
+function deleteToDo(div) {
+  div.disabled = true;
+  div = div.parentElement.parentElement;
+  div.classList.add("finished");
+}
 
 
 // Finished Checkbox
-$(document).on('checked','.checkboxFinished',function() {
-  var element = this;
-  element.classList.remove("test");
-  element.classList.add("successBro");
-  element = element.parentElement.parentElement;
-  element.classList.add("finished");
-});
+// $(document).on('checked','.checkboxFinished',function() {
+//   var element = this;
+//   element.classList.remove("test");
+//   element.classList.add("successBro");
+//   element = element.parentElement.parentElement;
+//   element.classList.add("finished");
+// });
