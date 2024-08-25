@@ -1,26 +1,21 @@
+<!DOCTYPE html>
 <html>
-<body>
-    <style>
-        .finished {
-            text-decoration: line-through;
+<head>
+    <title>Menampilkan Tanggal dan Waktu</title>
+    <script>
+        function displayDate() {
+            var today = new Date();
+            var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+            var day = days[today.getDay()];
+            var date = today.getDate();
+            var month = today.getMonth() + 1; // Januari adalah 0
+            var year = today.getFullYear();
+            document.getElementById("dateDisplay").innerHTML = day + ", " + date + "/" + month + "/" + year;
         }
-    </style>
-   <h3>Using the <i> onchange event attribute </i> to invoke the particular function whenever the user checks and unchecks checkbox </h3>
-   <label for = "check"> Are you above 18? </label> 
-   <div>
-        <p>Hilang</p>
-        <input type = "checkbox" id = "check" value = "18" onchange = "showHidePan(this)"> <br><br>
-   </div>
-   <div id = "pan-input">
-      <label for = "pan"> Enter your pan number </label>
-      <input type = "text" id = "pan">
-   </div>
-   <script>
-      function showHidePan(div) {
-        div.disabled = true;
-        div = div.parentElement;
-        div.classList.add("finished");
-      }
-   </script>
+    </script>
+</head>
+<body onload="displayDate()">
+    <h1>Hari, Tanggal, Bulan, dan Tahun Saat Ini:</h1>
+    <p id="dateDisplay"></p>
 </body>
-</html> 
+</html>

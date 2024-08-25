@@ -1,3 +1,12 @@
+function displayDate() {
+  var today = new Date();
+  var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+  var day = days[today.getDay()];
+  var date = today.getDate();
+  var month = today.getMonth() + 1; // Januari adalah 0
+  var year = today.getFullYear();
+  document.getElementById("dateDisplay").innerHTML = day + ", " + date + "/" + month + "/" + year;
+}
 function addTableToDo() {
     var table = document.getElementById("tableToDo");
     var inputToDo = document.getElementById("inputToDo").value;
@@ -23,8 +32,7 @@ function addTableToDo() {
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
-    // cell1.innerHTML = `<input class="form-check-input" type="checkbox" value="" aria-label="Checkbox for following text input">`;
-    cell1.innerHTML = `<td><input type="checkbox" name="finishCheckbox" onchange="showHidePan(this)"></td>`
+    cell1.innerHTML = `<td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)"></td>`
     cell2.innerHTML = inputToDo;
     cell3.innerHTML = inputDeadline;
     cell4.innerHTML = priority;
@@ -39,29 +47,9 @@ $(document).on('click','.buttonDelete',function() {
   var div = this.parentElement.parentElement;
   div.style.display = "none";
 });
-
-// Finished
-// $(document).on('click','.buttonFinished',function() {
-//   var element = this;
-//   element.classList.remove("btn-primary");
-//   element.classList.add("btn-success");
-//   element = element.parentElement.parentElement;
-//   element.classList.add("finished");
-// });
-
 // Finish
-function deleteToDo(div) {
+function finishToDo(div) {
   div.disabled = true;
   div = div.parentElement.parentElement;
   div.classList.add("finished");
-}
-
-
-// Finished Checkbox
-// $(document).on('checked','.checkboxFinished',function() {
-//   var element = this;
-//   element.classList.remove("test");
-//   element.classList.add("successBro");
-//   element = element.parentElement.parentElement;
-//   element.classList.add("finished");
-// });
+};

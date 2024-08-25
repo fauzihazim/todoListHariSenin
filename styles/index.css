@@ -22,27 +22,6 @@ tr.finished td:before {
     border-bottom: 1px solid #111;
     width: 100%;
 }
-
-/* tr.late td::before {
-    content: " ";
-    position: absolute;
-    left: 0;
-    background-color: aqua;
-} */
-
 .late {
     background-color: #ff4136;
 }
-
-/* tr.strikeout th:after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    border-bottom: 1px solid #111;
-    width: 100%;
-} */
-
-/* input[type=checkbox]:checked + label.strikethrough{
-    text-decoration: line-through;
-} */
