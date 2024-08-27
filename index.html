@@ -11,22 +11,8 @@
     <title>To-do list | Hari Senin</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse nav justify-content-end" id="navbarSupportedContent" style="gap: 5px;">
-                    <button id="jabatan" class="btn btn-secondary hidden"></button>
-                    <button id="nama" class="btn btn-primary hidden"></button>
-                    <button id="logOut" class="btn btn-danger hidden" onclick="logOut()">Log Out</button>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div id="masukForm" class="input-group mb-3">
+    <div id="masukForm">
+        <h1>Masuk pada To Do List</h1>
         <input id="inputNama" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Masukkan Nama anda">
         <select id="jabatanSelect" class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
           <option selected disabled>Jabatan</option>
@@ -34,8 +20,19 @@
           <option value="Staff">Staff</option>
         </select>
         <button type="button" onclick="masuk()" class="btn btn-primary form-control">Masuk</button>
+        <p>
+            Note: <br>
+            - Untuk pengerjaan yang terlambat row akan berwarna merah <br>
+            - Untuk yang sudah dikerjakan akan dicoret dan berada pada kolom Finish To Do List <br>
+            - Dapat menfilter berdasarkan pengerjaan di hari ini <br>
+        </p>
     </div>
-    <main id="main">
+    <main id="main" class="hidden">
+        <div style="float: right;">
+            <button id="jabatan" class="btn btn-secondary hidden"></button>
+            <button id="nama" class="btn btn-primary hidden"></button>
+            <button id="logOut" class="btn btn-danger hidden" onclick="logOut()">Log Out</button>
+        </div>
         <h1>To-do List</h1>
         <body onload="displayDate()">
             <h5 id="dateDisplay" class="float-end" style="margin-right: 5px;"></h5>
