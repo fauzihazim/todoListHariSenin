@@ -1,21 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Menampilkan Tanggal dan Waktu</title>
-    <script>
-        function displayDate() {
-            var today = new Date();
-            var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-            var day = days[today.getDay()];
-            var date = today.getDate();
-            var month = today.getMonth() + 1; // Januari adalah 0
-            var year = today.getFullYear();
-            document.getElementById("dateDisplay").innerHTML = day + ", " + date + "/" + month + "/" + year;
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/test2.css">
+    <title>Document</title>
 </head>
-<body onload="displayDate()">
-    <h1>Hari, Tanggal, Bulan, dan Tahun Saat Ini:</h1>
-    <p id="dateDisplay"></p>
+<body>
+    <button type="button" onclick="addTableToDo()" class="btn btn-primary form-control">+Add</button>
+    <table id="table1">
+        <thead>
+          <tr><th>Code</th><th>Name</th><th>Amount</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>8</td><td>Fred</td><td><input type="text"></td>
+            <!-- <td><button type="button"></button></td> -->
+            <td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)"></td>
+          </tr>
+          <tr>
+            <td>4</td><td>Dean</td><td><input type="text"></td>
+            <td><button type="button" class="button"></button></td>
+          </tr>
+          <tr>
+            <td>1</td><td>Mark</td><td><input type="text"></td>
+            <td><button type="button" class="button"></button></td>
+          </tr>
+        </tbody>
+    </table>
+      
+    <table id="table2">
+        <thead>
+          <tr><th>Code</th><th>Name</th><th>Amount</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <script src="scripts/test2.js"></script>
 </body>
 </html>

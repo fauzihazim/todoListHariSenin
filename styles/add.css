@@ -25,7 +25,7 @@ tr.finished td:before {
 .late {
     background-color: #ff4136;
 }
-
-#finishedTableToDo tr th:nth-child(1), #finishedTableToDo tr td:nth-child(1), #finishedTableToDo tr th:nth-child(5), #finishedTableToDo tr td:nth-child(5) {
+/* #finishedTableToDo .button {visibility: hidden} */
+#finishedTableToDo tr th:nth-child(5), #finishedTableToDo tr td:nth-child(5){
     display:none;
 }
