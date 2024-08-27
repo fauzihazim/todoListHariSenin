@@ -1,6 +1,9 @@
 h1 {
     text-align: center;
 }
+.hidden {
+    visibility: hidden;
+}
 table {
     width:90%;
     margin: auto;

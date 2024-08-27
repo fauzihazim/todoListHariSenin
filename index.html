@@ -20,10 +20,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse nav justify-content-end" id="navbarSupportedContent" style="gap: 5px;">
-                    <button id="jabatan" class="btn btn-secondary">Manajer</button>
-                    <!-- <button id="nama" class="btn btn-primary">Andika Permana</button> -->
-                    <h1 id="nama"></h1>
-                    <button class="btn btn-danger">Log Out</button>
+                    <button id="jabatan" class="btn btn-secondary hidden"></button>
+                    <button id="nama" class="btn btn-primary hidden"></button>
+                    <!-- <h1 id="nama"></h1> -->
+                    <button id="logOut" class="btn btn-danger hidden" onclick="logOut()">Log Out</button>
                 </div>
             </div>
         </nav>
@@ -39,7 +39,7 @@
           <li><a class="dropdown-item" href="#">Separated link</a></li>
         </ul>
     </div> -->
-    <div class="input-group mb-3">
+    <div id="masukForm" class="input-group mb-3">
         <!-- <button class="btn btn-outline-secondary" type="button">Button</button> -->
         <input id="inputNama" type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Masukkan Nama anda">
         <select id="jabatanSelect" class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
@@ -50,7 +50,8 @@
         </select>
         <button type="button" onclick="masuk()" class="btn btn-primary form-control">Masuk</button>
     </div>
-    <main>
+    <main id="main" class="hidden">
+    <!-- <main id="main"> -->
         <h1>To-do List</h1>
         <body onload="displayDate()">
             <h5 id="dateDisplay" class="float-end" style="margin-right: 5px;"></h5>
@@ -76,9 +77,8 @@
             </tr>
             <tr>
                 <td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)"></td>
-                <!-- <td><button onclick="finishToDo(this)">Finished</button></td> -->
                 <td>Emil</td>
-                <td>Tobias</td>
+                <td>2024-08-26</td>
                 <td>High</td>
                 <td>
                     <button class="buttonDelete" style="border: none; background-color: transparent;">
@@ -90,9 +90,21 @@
             </tr>
             <tr>
                 <td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)"></td>
-                <!-- <td><button onclick="finishToDo(this)">cek</button></td> -->
                 <td>16</td>
-                <td>14</td>
+                <td>2024-08-27</td>
+                <td>Low</td>
+                <td>
+                    <button class="buttonDelete" style="border: none; background-color: transparent;">
+                        <span class="material-symbols-outlined" style="color: #E4A11B;">
+                            delete
+                        </span>
+                    </button>
+                </td>
+            </tr>
+            <tr>
+                <td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)"></td>
+                <td>16</td>
+                <td>2023-08-21</td>
                 <td>Low</td>
                 <td>
                     <button class="buttonDelete" style="border: none; background-color: transparent;">

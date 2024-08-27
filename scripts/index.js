@@ -4,19 +4,51 @@ function masuk() {
     alert("Insert Your Name");
     return null;
   }
-  function changeID(nama) {
-    element.id = nama;
-    getID();   
-  }
   const jabatan = document.getElementById("jabatanSelect").value;
   if ((jabatan !== 'Manajer') && (jabatan !== 'Staff')) {
     alert("Insert Your Jabatan");
     return null;
   };
-  // console.log("Nama :", nama, " Jabatan :", jabatan);
+  document.getElementById("nama").innerHTML = nama;
+  document.getElementById("jabatan").innerHTML = jabatan;
+  addHiddenClassMasuk();
+  removeHiddenClassMasuk();
+}
+function removeHiddenClassMasuk() {
+  var removeHidden = document.getElementById("main");
+  removeHidden.classList.remove("hidden");
+  removeHidden = document.getElementById("nama");
+  removeHidden.classList.remove("hidden");
+  removeHidden = document.getElementById("jabatan");
+  removeHidden.classList.remove("hidden");
+  removeHidden = document.getElementById("logOut");
+  removeHidden.classList.remove("hidden");
+}
+function addHiddenClassMasuk() {
+  let addHidden = document.getElementById("masukForm");
+  addHidden.classList.add("hidden");
 }
 
-document.getElementById('jabatan').value='new value';
+function logOut() {
+  addHiddenClassLogOut();
+  removeHiddenClassLogOut();
+  $('#masukForm').children('input').val('')
+  $('#masukForm').children('select').val('Jabatan')
+}
+function addHiddenClassLogOut() {
+  let addHidden = document.getElementById("main");
+  addHidden.classList.add("hidden");
+  addHidden = document.getElementById("nama");
+  addHidden.classList.add("hidden");
+  addHidden = document.getElementById("jabatan");
+  addHidden.classList.add("hidden");
+  addHidden = document.getElementById("logOut");
+  addHidden.classList.add("hidden");
+}
+function removeHiddenClassLogOut() {
+  const removeHidden = document.getElementById("masukForm");
+  removeHidden.classList.remove("hidden");
+}
 
 function displayDate() {
   var today = new Date();
@@ -28,40 +60,40 @@ function displayDate() {
   document.getElementById("dateDisplay").innerHTML = day + ", " + date + "/" + month + "/" + year;
 }
 function addTableToDo() {
-    var table = document.getElementById("tableToDo");
-    var inputToDo = document.getElementById("inputToDo").value;
-    var inputDeadline = document.getElementById("inputDeadline").value;
-    var priority = document.getElementById("prioritySelect").value;
-    if (inputToDo.trim().length === 0) {
-        alert("Insert Your Todo List");
-        return null;
-    };
-    if (inputDeadline === '') {
-        alert("Insert Your Deadline");
-        return null;
-    };
-    if (priority === 'Priority :') {
-      alert("Insert Your Priority");
+  var table = document.getElementById("tableToDo");
+  var inputToDo = document.getElementById("inputToDo").value;
+  var inputDeadline = document.getElementById("inputDeadline").value;
+  var priority = document.getElementById("prioritySelect").value;
+  if (inputToDo.trim().length === 0) {
+      alert("Insert Your Todo List");
       return null;
-    }
-    var oTable = document.getElementById('tableToDo');
-    var lastRow = oTable.rows.length;
-    var row = table.insertRow(lastRow);
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
-    var cell5 = row.insertCell(4);
-    cell1.innerHTML = `<input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)">`
-    // cell1.innerHTML = `<td><button onclick="finishToDo(this)">cek</button></td>`
-    cell2.innerHTML = inputToDo;
-    cell3.innerHTML = inputDeadline;
-    cell4.innerHTML = priority;
-    cell5.innerHTML = `<button class="buttonDelete" style="border: none; background-color: transparent;">
-                        <span class="material-symbols-outlined" style="color: #E4A11B;">
-                            delete
-                        </span>
-                      </button>`;
+  };
+  if (inputDeadline === '') {
+      alert("Insert Your Deadline");
+      return null;
+  };
+  if (priority === 'Priority :') {
+    alert("Insert Your Priority");
+    return null;
+  };
+  var oTable = document.getElementById('tableToDo');
+  var lastRow = oTable.rows.length;
+  var row = table.insertRow(lastRow);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+  var cell3 = row.insertCell(2);
+  var cell4 = row.insertCell(3);
+  var cell5 = row.insertCell(4);
+  cell1.innerHTML = `<input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)">`
+  cell2.innerHTML = inputToDo;
+  cell3.innerHTML = inputDeadline;
+  cell4.innerHTML = priority;
+  cell5.innerHTML = `<button class="buttonDelete" style="border: none; background-color: transparent;">
+                      <span class="material-symbols-outlined" style="color: #E4A11B;">
+                          delete
+                      </span>
+                    </button>`;
+  checkDataNewData(inputDeadline, lastRow);
 }
 // Delete table
 $(document).on('click','.buttonDelete',function() {
@@ -73,35 +105,34 @@ function finishToDo(input) {
   // Get the row to be moved
   input.disabled = true;
   var row = input.parentNode.parentNode;
-  
+
   // Remove the row from the first table
   row.parentNode.removeChild(row);
   row.classList.add("finished");
-  
+
   // Append the row to the second table
   document.getElementById("finishedTableToDo").appendChild(row);
 }
 
-// Finish
-// function finishToDo(div) {
-//   div.disabled = true;
-//   div = div.parentElement.parentElement;
-//   div.classList.add("finished");
-// };
-
-// const moveTR = (ev) => {
-//   console.log("Halo");
-  
-//   const EL_tr = ev.currentTarget.closest("tr");
-//   const sel = EL_tr.closest("table").id === "tableToDo" ? "#finishedTableToDo" : "#tableToDo";
-//   document.querySelector(sel).append(EL_tr);
-// };
-
-// // function moveIt(div) {
-// //   div = div.parentElement.parentElement;
-// //   div.forEach(EL => EL.addEventListener('change', moveTR));
-// // }
-// document.querySelectorAll("table input")
-//   .forEach(EL => EL.addEventListener('change', moveTR));
-// document.querySelectorAll("table button")
-//   .forEach(EL => EL.addEventListener("click", moveTR));
+var rowLength = document.getElementById("tableToDo").rows.length;
+let currentDate = new Date().toJSON().slice(0, 10);
+var i = 1;
+while (i != rowLength) {
+  var tr = document.getElementsByTagName("tr")[i];
+  var td = tr.getElementsByTagName("td")[2];
+  var td_text = td.innerHTML;
+  if (td_text < currentDate) {
+    td = td.parentElement;
+    td.classList.add("late");
+  }
+  i++;
+}
+function checkDataNewData(deadline, newRow) {
+  let currentDate = new Date().toJSON().slice(0, 10);
+  if (deadline < currentDate) {
+    console.log("Terlambat");
+    var tr = document.getElementsByTagName("tr")[newRow];
+    tr.classList.add("late");
+    
+  }
+}
