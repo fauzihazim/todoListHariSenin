@@ -130,9 +130,32 @@ while (i != rowLength) {
 function checkDataNewData(deadline, newRow) {
   let currentDate = new Date().toJSON().slice(0, 10);
   if (deadline < currentDate) {
-    console.log("Terlambat");
     var tr = document.getElementsByTagName("tr")[newRow];
     tr.classList.add("late");
-    
+  }
+}
+
+function showToDoToday() {
+  var rowLength = document.getElementById("tableToDo").rows.length;
+  let currentDate = new Date().toJSON().slice(0, 10);
+  var i = 1;
+  while (i != rowLength) {
+    var tr = document.getElementsByTagName("tr")[i];
+    var td = tr.getElementsByTagName("td")[2];
+    var td_text = td.innerHTML;
+    if (td_text != currentDate) {
+      td = td.parentElement;
+      td.classList.add("filteredByDay");
+    }
+    i++;
+  }
+}
+function showToDoAll() {
+  var rowLength = document.getElementById("tableToDo").rows.length;
+  var i = 1;
+  while (i != rowLength) {
+    var element = document.querySelector(".filteredByDay");
+    element.classList.remove("filteredByDay");
+    i++;
   }
 }

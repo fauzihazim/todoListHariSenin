@@ -32,3 +32,6 @@ tr.finished td:before {
 #finishedTableToDo tr th:nth-child(1), #finishedTableToDo tr td:nth-child(1), #finishedTableToDo tr th:nth-child(5), #finishedTableToDo tr td:nth-child(5) {
     display:none;
 }
+.filteredByDay {
+    visibility: hidden;
+}
