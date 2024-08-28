@@ -51,12 +51,12 @@ function removeHiddenClassLogOut() {
 }
 
 function displayDate() {
-  var today = new Date();
-  var days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-  var day = days[today.getDay()];
-  var date = today.getDate();
-  var month = today.getMonth() + 1; // Januari adalah 0
-  var year = today.getFullYear();
+  let today = new Date();
+  let days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+  let day = days[today.getDay()];
+  let date = today.getDate();
+  let month = today.getMonth() + 1; // Januari adalah 0
+  let year = today.getFullYear();
   document.getElementById("dateDisplay").innerHTML = day + ", " + date + "/" + month + "/" + year;
 }
 function addTableToDo() {
@@ -86,7 +86,7 @@ function addTableToDo() {
   var cell5 = row.insertCell(4);
   cell1.innerHTML = `<input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)">`
   cell2.innerHTML = inputToDo;
-  cell3.innerHTML = inputDeadline;
+  cell3.innerHTML = addDay(inputDeadline);
   cell4.innerHTML = priority;
   cell5.innerHTML = `<button class="buttonDelete" style="border: none; background-color: transparent;">
                       <span class="material-symbols-outlined" style="color: #E4A11B;">
@@ -95,6 +95,15 @@ function addTableToDo() {
                     </button>`;
   checkDataNewData(inputDeadline, lastRow);
 }
+// Add day on deadline
+function addDay(date) {
+  let days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+  let specificDate = new Date(date);
+  let dayOfWeek = days[specificDate.getDay()];
+  dayOfWeek = `${dayOfWeek}, ${date}`;
+  return dayOfWeek;
+}
+
 // Delete table
 $(document).on('click','.buttonDelete',function() {
   var div = this.parentElement.parentElement;
@@ -105,11 +114,9 @@ function finishToDo(input) {
   // Get the row to be moved
   input.disabled = true;
   var row = input.parentNode.parentNode;
-
   // Remove the row from the first table
   row.parentNode.removeChild(row);
   row.classList.add("finished");
-
   // Append the row to the second table
   document.getElementById("finishedTableToDo").appendChild(row);
 }
@@ -121,6 +128,8 @@ while (i != rowLength) {
   var tr = document.getElementsByTagName("tr")[i];
   var td = tr.getElementsByTagName("td")[2];
   var td_text = td.innerHTML;
+  let day = td_text.split(" ");
+  td_text = day[1];
   if (td_text < currentDate) {
     td = td.parentElement;
     td.classList.add("late");
@@ -134,7 +143,6 @@ function checkDataNewData(deadline, newRow) {
     tr.classList.add("late");
   }
 }
-
 function showToDoToday() {
   var rowLength = document.getElementById("tableToDo").rows.length;
   let currentDate = new Date().toJSON().slice(0, 10);
@@ -143,6 +151,8 @@ function showToDoToday() {
     var tr = document.getElementsByTagName("tr")[i];
     var td = tr.getElementsByTagName("td")[2];
     var td_text = td.innerHTML;
+    let day = td_text.split(" ");
+    td_text = day[1];
     if (td_text != currentDate) {
       td = td.parentElement;
       td.classList.add("filteredByDay");
