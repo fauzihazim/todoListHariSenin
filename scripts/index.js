@@ -59,11 +59,47 @@ function displayDate() {
   let year = today.getFullYear();
   document.getElementById("dateDisplay").innerHTML = day + ", " + date + "/" + month + "/" + year;
 }
+function showToDoToday() {
+  var rowLength = document.getElementById("tableToDo").rows.length;
+  let currentDate = new Date().toJSON().slice(0, 10);
+  console.log("Current Date: ", currentDate);
+  
+  var i = 2;
+  while (i != rowLength) {
+    var tr = document.getElementsByTagName("tr")[i];
+    var td = tr.getElementsByTagName("td")[2];
+    var td_text = td.innerHTML;
+    // console.log(td_text);
+    
+    let day = td_text.split(" ");
+    td_text = day[1];
+    console.log(td_text);
+    
+    if (td_text != currentDate) {
+      td = td.parentElement;
+      td.classList.add("filteredByDay");
+    };
+    i++;
+  };
+}
+function showToDoAll() {
+  var rowLength = document.getElementById("tableToDo").rows.length;
+  var i = 2;
+  while (i != rowLength) {
+    var element = document.querySelector(".filteredByDay");
+    element.classList.remove("filteredByDay");
+    i++;
+  }
+}
+function deleteAllToDo() {
+  var tbl = document.getElementById("tableToDo");
+  tbl.removeChild(tbl.getElementsByTagName("tbody")[0]);
+}
 function addTableToDo() {
-  var table = document.getElementById("tableToDo");
-  var inputToDo = document.getElementById("inputToDo").value;
-  var inputDeadline = document.getElementById("inputDeadline").value;
-  var priority = document.getElementById("prioritySelect").value;
+  let table = document.getElementById("tableToDo");
+  let inputToDo = document.getElementById("inputToDo").value;
+  let inputDeadline = document.getElementById("inputDeadline").value;
+  let priority = document.getElementById("prioritySelect").value;
   if (inputToDo.trim().length === 0) {
       alert("Insert Your Todo List");
       return null;
@@ -76,14 +112,15 @@ function addTableToDo() {
     alert("Insert Your Priority");
     return null;
   };
-  var oTable = document.getElementById('tableToDo');
-  var lastRow = oTable.rows.length;
-  var row = table.insertRow(lastRow);
-  var cell1 = row.insertCell(0);
-  var cell2 = row.insertCell(1);
-  var cell3 = row.insertCell(2);
-  var cell4 = row.insertCell(3);
-  var cell5 = row.insertCell(4);
+  let oTable = document.getElementById('tableToDo');
+  let lastRow = oTable.rows.length;
+  let row = table.insertRow(lastRow);
+  // let row = table.insertRow(1);
+  let cell1 = row.insertCell(0);
+  let cell2 = row.insertCell(1);
+  let cell3 = row.insertCell(2);
+  let cell4 = row.insertCell(3);
+  let cell5 = row.insertCell(4);
   cell1.innerHTML = `<input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)">`
   cell2.innerHTML = inputToDo;
   cell3.innerHTML = addDay(inputDeadline);
@@ -111,19 +148,28 @@ $(document).on('click','.buttonDelete',function() {
 });
 // Finished
 function finishToDo(input) {
-  // Get the row to be moved
-  input.disabled = true;
   var row = input.parentNode.parentNode;
-  // Remove the row from the first table
-  row.parentNode.removeChild(row);
   row.classList.add("finished");
-  // Append the row to the second table
-  document.getElementById("finishedTableToDo").appendChild(row);
+  input.disabled = true;
+  let value1 = input.parentElement.parentElement.children[1].innerHTML;
+  console.log(value1);
+  let value2 = input.parentElement.parentElement.children[2].innerHTML;
+  console.log(value2);
+  let value3 = input.parentElement.parentElement.children[3].innerHTML;
+  console.log(value3);
+  let rowIndex = input.parentElement.parentElement.rowIndex;
+  let addedRow = document.getElementById("tableToDo").rows[rowIndex];
+  let addRowValue = addedRow.insertCell(5);
+  addRowValue.innerHTML = value1;
+  addRowValue = addedRow.insertCell(6);
+  addRowValue.innerHTML = value2;
+  addRowValue = addedRow.insertCell(7);
+  addRowValue.innerHTML = value3;
 }
 
 var rowLength = document.getElementById("tableToDo").rows.length;
 let currentDate = new Date().toJSON().slice(0, 10);
-var i = 1;
+var i = 2;
 while (i != rowLength) {
   var tr = document.getElementsByTagName("tr")[i];
   var td = tr.getElementsByTagName("td")[2];
@@ -133,39 +179,15 @@ while (i != rowLength) {
   if (td_text < currentDate) {
     td = td.parentElement;
     td.classList.add("late");
-  }
+  };
   i++;
-}
+};
+// function checkDataNewData(deadline, newRow) {
 function checkDataNewData(deadline, newRow) {
+  // let newRow = 1;
   let currentDate = new Date().toJSON().slice(0, 10);
   if (deadline < currentDate) {
     var tr = document.getElementsByTagName("tr")[newRow];
     tr.classList.add("late");
-  }
-}
-function showToDoToday() {
-  var rowLength = document.getElementById("tableToDo").rows.length;
-  let currentDate = new Date().toJSON().slice(0, 10);
-  var i = 1;
-  while (i != rowLength) {
-    var tr = document.getElementsByTagName("tr")[i];
-    var td = tr.getElementsByTagName("td")[2];
-    var td_text = td.innerHTML;
-    let day = td_text.split(" ");
-    td_text = day[1];
-    if (td_text != currentDate) {
-      td = td.parentElement;
-      td.classList.add("filteredByDay");
-    }
-    i++;
-  }
-}
-function showToDoAll() {
-  var rowLength = document.getElementById("tableToDo").rows.length;
-  var i = 1;
-  while (i != rowLength) {
-    var element = document.querySelector(".filteredByDay");
-    element.classList.remove("filteredByDay");
-    i++;
   }
 }

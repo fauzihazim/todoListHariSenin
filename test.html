@@ -1,81 +1,66 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<button onclick="addTableToDo()">Click</button>
-<h3>1st Table:</h3>
-<table class="table" id="table_source">
-    <tbody>
-        <tr>
-            <td>Row</td>
-            <td>1</td>
-            <td><a href="#/" class='move-row'>+</a></td>
-        </tr>
-        <tr>
-            <td>Another Row</td>
-            <td>2</td>
-            <td><a href="#/" class='move-row'>+</a></td>
-        </tr>
-    </tbody>
-</table>
-
-<h3>2nd Table:</h3>
-<table class="table" id="table_dest">
-    <tbody>
-      <tr>
-          <td>Row</td>
-          <td>1</td>
-          <td><a href="#/" class='move-row'>-</a></td>
-      </tr>
-    </tbody>
+<style>
+    table td, table th {
+        width: 50px;
+        height: 50px;
+        border: 1px solid black;
+    }
+</style>
+<h1>Table 1</h1>
+<table id="table">
+    <tr>
+        <th>Action</th>
+        <th>To-do</th>
+        <th>Due to</th>
+        <th>Tambahan 1</th>
+        <th>Tambahan 2</th>
+    </tr>
+	<tr>
+        <!-- <td><button onclick="addDataColumn(this)">Klik</button></td> -->
+        <td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="addDataColumn(this)"></td>
+		<td>Halo</td>
+		<td>Kak</td>
+        <!-- <td></td> -->
+	</tr>
+	<tr>
+        <!-- <td><button onclick="addDataColumn(this)">Klik</button></td> -->
+        <td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="addDataColumn(this)"></td>
+		<td>Spada</td>
+		<td>Hayolo</td>
+        <!-- <td></td> -->
+	</tr>
 </table>
 <script>
-    function addTableToDo() {
-        var table = document.getElementById("table_source");
-        // var inputToDo = document.getElementById("inputToDo").value;
-        // var inputDeadline = document.getElementById("inputDeadline").value;
-        // var priority = document.getElementById("prioritySelect").value;
-        // if (inputToDo.trim().length === 0) {
-        //     alert("Insert Your Todo List");
-        //     return null;
-        // };
-        // if (inputDeadline === '') {
-        //     alert("Insert Your Deadline");
-        //     return null;
-        // };
-        // if (priority === 'Priority :') {
-        // alert("Insert Your Priority");
-        // return null;
-        // }
-        var oTable = document.getElementById('table_source');
-        var lastRow = oTable.rows.length;
-        var row = table.insertRow(lastRow);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        // var cell4 = row.insertCell(3);
-        // var cell5 = row.insertCell(4);
-        cell1.innerHTML = `<td><input class="form-check-input" type="checkbox" name="finishCheckbox" onchange="finishToDo(this)"></td>`
-        // cell1.innerHTML = `<td><button onclick="finishToDo(this)">cek</button></td>`
-        cell2.innerHTML = inputToDo;
-        cell3.innerHTML = inputDeadline;
-        cell4.innerHTML = priority;
-        cell5.innerHTML = `<button class="buttonDelete" style="border: none; background-color: transparent;">
-                            <span class="material-symbols-outlined" style="color: #E4A11B;">
-                                delete
-                            </span>
-                        </button>`;
-    }
-    $(document).ready(function() {
-        $("#table_source .move-row").on("click", function() {
-            var tr = $(this).closest("tr").remove().clone();
-            tr.find(".move-row").text("-");
-            $("#table_dest tbody").append(tr);
-        });
+    // let trs = document.querySelectorAll('#table tr');
 
-        $("#table_dest .move-row").on("click", function() {
-            var tr = $(this).closest("tr").remove().clone();
-            tr.find(".move-row").text("+");
-            $("#table_source tbody").append(tr);
-        });
-    });
+    // for (let tr of trs) {
+    //     let td = document.createElement('td');
+    //     tr.appendChild(td);
+    // }
+    function addColumn(col) {
+        console.log(col);
+        console.log(col.parentElement);
+        console.log(col.parentElement.parentElement);
+        
+        console.log(col.parentElement.parentElement.children.value);
+        let trs = document.querySelectorAll('#table tr');
+
+        for (let tr of trs) {
+            let td = document.createElement('td');
+            tr.appendChild(td);
+        }
+    }
+
+    function addDataColumn(row) {
+        row.disabled = true;
+        let value1 = row.parentElement.parentElement.children[1].innerHTML;
+        console.log(value1);
+        let value2 = row.parentElement.parentElement.children[2].innerHTML;
+        console.log(value2);
+        let rowIndex = row.parentElement.parentElement.rowIndex;
+        let addedRow = document.getElementById("table").rows[rowIndex];
+        let addRowValue = addedRow.insertCell(3);
+        addRowValue.innerHTML = value1;
+        addRowValue = addedRow.insertCell(4);
+        addRowValue.innerHTML = value2;
+    }
 </script>
